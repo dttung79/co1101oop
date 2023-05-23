@@ -1,0 +1,3 @@
+IP:Internet Protocol
+DNS:Domain Name Service
+RAM:Random Access Memory
