@@ -17,7 +17,7 @@ def respond():
             pizza_price += extras[extra]
     description += extras_description
     print(f"Pizza chosen is {description}")
-    txt_output.set(f"Pizza price is £{pizza_price:.2f}")
+    pizza_var.set(f"Pizza price is £{pizza_price:.2f}")
 
 
 def add_to_basket():
@@ -29,17 +29,32 @@ def add_to_basket():
             extra_price = extras[extra]
             chosen_pizza.add_extra(extra, extra_price)
     basket.append(chosen_pizza)
-    txt2["state"] = "normal"
-    txt2.delete("1.0", tk.END)
+    txt_basket["state"] = "normal"
+    txt_basket.delete("1.0", tk.END)
     contents = ""
     total_cost = 0
     for chosen_pizza in basket:
         contents += chosen_pizza.get_description() + "\n"
         total_cost += chosen_pizza.price
-    txt2.insert(1.0, contents)
-    txt2["state"] = "disabled"
+    txt_basket.insert(1.0, contents)
+    txt_basket["state"] = "disabled"
     basket_output.set(f"Total cost is £{total_cost:.2f}")
 
+def clear_basket():
+    # Clear basket list
+    basket.clear()
+    # Clear text box basket
+    txt_basket["state"] = "normal"      # change state to normal to edit
+    txt_basket.delete("1.0", tk.END)    # clear content of Entry
+    txt_basket["state"] = "disabled"    # change state back to disabled to prevent editing
+
+    # Clear total cost
+    basket_output.set("")
+    txt_basket["state"] = "normal"      
+    txt_basket.delete("1.0", tk.END)
+    txt_basket["state"] = "disabled"
+    # Clear extra checkboxes
+    extra_chosen.clear()
 
 window = tk.Tk()
 window.geometry("500x600")
@@ -76,28 +91,32 @@ for extra in extras:
     chk.grid(column=0, row=row_counter, sticky="W")
     row_counter += 1
 
-txt_output = tk.StringVar(window)
+pizza_var = tk.StringVar(window)
 
-txt = tk.Entry(window, width=25, textvariable=txt_output, state="readonly")
-txt.grid(column=0, row=row_counter, sticky="W", padx=5, pady=5)
+txt_pizza_price = tk.Entry(window, width=25, textvariable=pizza_var, state="readonly")
+txt_pizza_price.grid(column=0, row=row_counter, sticky="W", padx=5, pady=5)
 row_counter += 1
 
 add_button = tk.Button(window, text="Add to basket", command=add_to_basket)
 add_button.grid(column=0, row=row_counter, sticky="W", padx=5, pady=5)
+
+clear_button = tk.Button(window, text="Clear basket", command=clear_basket)
+clear_button.grid(column=0, row=row_counter, sticky="E", padx=5, pady=5)
+
 row_counter += 1
 
 lbl1 = tk.Label(window, text="Basket", font=("Arial Bold", 20))
 lbl1.grid(column=0, row=row_counter, sticky="W")
 row_counter += 1
 
-txt2 = tk.Text(window, width=60, height=10, state="disabled")
-txt2.grid(column=0, row=row_counter, columnspan=2, sticky="W", padx=5, pady=5)
+txt_basket = tk.Text(window, width=60, height=10, state="disabled")
+txt_basket.grid(column=0, row=row_counter, columnspan=2, sticky="W", padx=5, pady=5)
 row_counter += 1
 
 basket_output = tk.StringVar(window)
 
-txt3 = tk.Entry(window, width=25, textvariable=basket_output, state="readonly")
-txt3.grid(column=0, row=row_counter, sticky="W", padx=5, pady=5)
+txt_total_cost = tk.Entry(window, width=25, textvariable=basket_output, state="readonly")
+txt_total_cost.grid(column=0, row=row_counter, sticky="W", padx=5, pady=5)
 row_counter += 1
 
 respond()
