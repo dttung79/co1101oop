@@ -1,4 +1,4 @@
-from product import Product, Store
+from week8.product import Product, Store
 
 class StoreProgram:
     def __init__(self, store):

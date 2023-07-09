@@ -54,7 +54,8 @@ def clear_basket():
     txt_basket.delete("1.0", tk.END)
     txt_basket["state"] = "disabled"
     # Clear extra checkboxes
-    extra_chosen.clear()
+    for chk in chk_extras:
+        chk.deselect()
 
 window = tk.Tk()
 window.geometry("500x600")
@@ -85,11 +86,15 @@ row_counter += 1
 extras = {"mushrooms": 0.5, "cheese": 1.0, "anchovies": 1.5, "sausage": 1.8}
 
 extra_chosen = {}
+chk_extras = []
+
 for extra in extras:
     extra_chosen[extra] = tk.BooleanVar(window)
     chk = tk.Checkbutton(window, text=f"{extra} - £{extras[extra]:.2f}", var=extra_chosen[extra], command=respond)
     chk.grid(column=0, row=row_counter, sticky="W")
     row_counter += 1
+
+    chk_extras.append(chk)
 
 pizza_var = tk.StringVar(window)
 
