@@ -2,7 +2,7 @@ from employee import Employee
 from parttime import PartTimeEmployee
 
 class Company:
-    def __init__(self, name):
+    def __init__(self, name='FPT'):
         self.__name = name
         self.__full_times = []
         self.__part_times = []

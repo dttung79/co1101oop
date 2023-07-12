@@ -25,7 +25,7 @@ class Employee:
         self.__rate = rate
 
     def salary(self):
-        return self._BASIC_SALARY + self.rate
+        return self._BASIC_SALARY * self.rate
     
     def show_info(self):
         print('Name:', self.name, ' salary:', self.salary())
