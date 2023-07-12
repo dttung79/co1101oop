@@ -20,10 +20,20 @@ class Product:
     
     @price.setter
     def price(self, value):
-        # TODO: validate value must be a positive number
+        if value <= 0:
+            raise ValueError('Price must be positive.')
         self.__price = value
     
     # TODO: implement stock property with getter and setter
+    @property
+    def stock(self):
+        return self.__stock
+    
+    @stock.setter
+    def stock(self, value):
+        if value < 0:
+            raise ValueError('Stock cannot be negative.')
+        self.__stock = value
     
     def get_value(self):
         return self.price * self.stock
@@ -36,13 +46,10 @@ class Store:
         self.__products.append(p)
         print(f'Product {p.name} has been added to the store.')
     
-    def remove(self, name):
-        for p in self.__products:
-            if p.name == name:
-                self.__products.remove(p)
-                print(f'Product {p.name} has been removed from the store.')
-                return
-        print(f'Product {name} not found.')
+    def remove(self, index):
+        if index < -len(self.__products) or index >= len(self.__products):
+            raise IndexError('Index out of range.')
+        self.__products.pop(index)
     
     # operator [], give access to product at index
     def __getitem__(self, index):
@@ -67,3 +74,6 @@ class Store:
                 empty_products.append(p)
         
         return empty_products
+
+    def size(self):
+        return len(self.__products)
