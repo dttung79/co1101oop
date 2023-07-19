@@ -10,8 +10,24 @@ from menu import Menu
 # 5. Add an isosceles triangle
 # 6. Display all shapes
 
-print(Circle('Circle 1', 5))
-print(Rectangle('Rectangle 1', 5, 10))
-print(Triangle('Triangle 1', 5, 10, 12))
-print(Square('Square 1', 5))
-print(IsoTriangle('IsoTriangle 1', 5, 8))
+class DemoShape(Menu):
+    def __init__(self):
+        self.__shapes = []
+    
+    def print_menu(self):
+        print("1. Add a circle")
+        print("2. Add a rectangle")
+        print("3. Add a triangle")
+        print("4. Add a square")
+        print("5. Add an isosceles triangle")
+        print("6. Display all shapes")
+        print("0. Exit")
+    
+    def __add_circle(self):
+        name = input("Enter name: ")
+        radius = float(input("Enter radius: "))
+        try:
+            circle = Circle(name, radius)
+            self.__shapes.append(circle)
+        except ValueError as e:
+            print(e, 'Cannot add circle')

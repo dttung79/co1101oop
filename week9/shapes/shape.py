@@ -24,17 +24,23 @@ class Shape(ABC):
 class Circle(Shape):
     def __init__(self, name, radius):
         super().__init__(name)
-        self._radius = radius
+        
+        if self.__check_radius(radius):
+            self._radius = radius
     
+    def __check_radius(self, radius):
+        if radius <= 0:
+            raise ValueError("Radius cannot be negative or zero")
+        
+        return True
     @property
     def radius(self):
         return self._radius
     
     @radius.setter
     def radius(self, value):
-        if value <= 0:
-            raise ValueError("Radius cannot be negative or zero")
-        self._radius = value
+        if self.__check_radius(value):
+            self._radius = value
 
     @property
     def area(self):
