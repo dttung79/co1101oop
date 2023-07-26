@@ -1,0 +1,23 @@
+Exercise: Pygame Circle Movement
+
+Your task is to extend a basic Pygame application in a way similar to the previous square example. Here are your instructions:
+
+Create a Game class. Define it in such a way that when you create an instance of the class, you can specify the window's width and height.
+
+Define color variables for RED and BLACK within the Game class.
+
+Define a constant for the circle's radius.
+
+Initialize the circle's position at the center of the window.
+
+Create a method for drawing the circle at its current position. Use the RED color for the circle.
+
+Create a method for handling events. This method should check for the QUIT event and key press events.
+
+When the arrow keys are pressed, update the circle's position accordingly. To do this, you'll need to add logic to your event handling method that checks for KEYDOWN events for the arrow keys.
+
+Create a run method that starts the game loop. In each frame of the loop, the window should be filled with the BLACK color, the circle should be drawn by calling the appropriate method, and the display should be updated.
+
+Outside of the Game class, create an instance of the class and call its run method to start the game.
+
+Remember to handle the QUIT event in your game loop to allow the user to close the game window.

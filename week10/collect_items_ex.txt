@@ -1,0 +1,27 @@
+Exercise: Pygame Circle Growth and Color Change
+
+Your task is to extend a basic Pygame application in a way similar to the previous examples. Here are your instructions:
+
+Create a Game class. Define it in such a way that when you create an instance of the class, you can specify the window's width and height.
+
+Define a color variable for BLACK within the Game class. This color will be used as the background color of the window.
+
+Create a Circle class that represents a circle. The circle should have properties for its position, radius, and color. It should also have a method for drawing the circle on the window.
+
+Initialize the circle's position at the center of the window and its color as white.
+
+Create an Item class that represents an item. The item should have properties for its position, size, and color. It should also have a method for drawing the item on the window.
+
+Initialize several items at random positions. The color of each item should be randomly chosen from a list of predefined colors.
+
+Create a method in the Game class for drawing the circle and items.
+
+Create a method in the Game class for handling events. This method should check for the QUIT event and key press events. When the arrow keys are pressed, update the circle's position accordingly.
+
+Create a method in the Game class for checking for collisions between the circle and items. When a collision is detected, remove the item, increase the circle's radius, and change the circle's color to the color of the item.
+
+Create a run method in the Game class that starts the game loop. In each frame of the loop, the window should be filled with the BLACK color, the circle and items should be drawn, and the display should be updated.
+
+Outside of the Game class, create an instance of the class and call its run method to start the game.
+
+Remember to handle the QUIT event in your game loop to allow the user to close the game window.

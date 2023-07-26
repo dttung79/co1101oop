@@ -1,0 +1,29 @@
+Exercise: Pygame Ball Catching Game with Lives and Increasing Speed
+
+Your task is to extend the previous Pygame application and add new features. Here are your instructions:
+
+Create a Game class. Define it in such a way that when you create an instance of the class, you can specify the window's width and height.
+
+Define color variables for BLACK and WHITE within the Game class.
+
+Define constants for the ball radius, ball initial speed, basket size, basket movement distance, initial number of lives, and the speed increase after each 10 balls caught.
+
+Create a Ball class that represents a ball. The ball should have properties for its position, radius, color, and speed. It should also have a method for drawing the ball on the window and a method for moving the ball down the screen at its current speed.
+
+Create a Basket class that represents the basket. The basket should have properties for its position, size, and color. It should also have a method for drawing the basket on the window.
+
+Initialize the ball at a random position at the top of the screen, and the basket near the bottom of the screen.
+
+Initialize the score and the number of lives.
+
+Create a method in the Game class for drawing the ball, the basket, the score, and the number of lives.
+
+Create a method in the Game class for handling events. This method should check for the QUIT event and key press events. When the left or right arrow key is pressed, update the basket's position accordingly.
+
+Create a method in the Game class for checking for collisions between the ball and the basket. When a collision is detected, increase the score by one, increase the ball's speed if necessary, and create a new ball at a random position at the top of the screen. If the ball goes off the bottom of the screen, decrease the number of lives and create a new ball at a random position at the top of the screen.
+
+In the game loop, if the number of lives is zero, display a game over message and break the loop.
+
+Outside of the Game class, create an instance of the class and call its run method to start the game.
+
+Remember to handle the QUIT event in your game loop to allow the user to close the game window
