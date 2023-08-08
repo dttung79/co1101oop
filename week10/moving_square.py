@@ -32,6 +32,10 @@ class Game:
                     self.square_position[1] -= self.step_size[1]
                 elif event.key == pygame.K_DOWN:
                     self.square_position[1] += self.step_size[1]
+                elif event.key == pygame.K_LEFT:
+                    self.square_position[0] -= self.step_size[0]
+                elif event.key == pygame.K_RIGHT:
+                    self.square_position[0] += self.step_size[0]
 
     def run(self):
         while True:

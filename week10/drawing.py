@@ -26,18 +26,11 @@ class Game:
         # Draw a blue line
         pygame.draw.line(self.window, self.BLUE, start_position, end_position, width)
 
-    def draw_triangle(self, positions):
-        pygame.draw.polygon(self.window, self.YELLOW, positions)
-
-    def draw_ellipse(self, rect):
-        pygame.draw.ellipse(self.window, self.CYAN, rect)
 
     def draw_shapes(self):
         self.draw_rectangle((50, 50), (200, 100))
         self.draw_circle((400, 300), 50)
         self.draw_line((600, 100), (700, 500), 5)
-        self.draw_triangle(((100, 100), (200, 100), (150, 200)))
-        self.draw_ellipse((500, 300, 400, 100))
 
     def run(self):
         while True:

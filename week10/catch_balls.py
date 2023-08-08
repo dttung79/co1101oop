@@ -37,7 +37,7 @@ class Game:
         self.BALL_RADIUS = 15
         self.BALL_SPEED = 0.5
         self.BASKET_SIZE = [100, 20]
-        self.BASKET_MOVE_DISTANCE = 5
+        self.BASKET_MOVE_DISTANCE = 1
 
         # Initialize the basket
         self.basket = Basket([self.width // 2, self.height - 50], self.BASKET_SIZE, self.WHITE)
@@ -47,12 +47,16 @@ class Game:
 
         # Initialize the score
         self.score = 0
+        self.lives = 5
 
     def draw_objects(self):
         self.ball.draw(self.window)
         self.basket.draw(self.window)
         text = self.font.render("Score: " + str(self.score), 1, self.WHITE)
         self.window.blit(text, (10, 10))
+
+        text_lives = self.font.render("Lives: " + str(self.lives), 1, self.WHITE)
+        self.window.blit(text_lives, (10, 40))
 
     def handle_events(self):
         for event in pygame.event.get():
@@ -68,13 +72,33 @@ class Game:
 
     def check_collision(self):
         self.ball.move()
-        if self.ball.position[1] > self.height:
+        if self.is_out_of_bounds():
             self.ball = Ball([random.randint(50, self.width-50), 0], self.BALL_RADIUS, self.WHITE, self.BALL_SPEED)
-        elif abs(self.basket.position[0] - self.ball.position[0]) < self.basket.size[0] // 2 and \
-             abs(self.basket.position[1] - self.ball.position[1]) < self.basket.size[1] // 2:
+        elif self.is_collided(self.ball, self.basket):
             self.ball = Ball([random.randint(50, self.width-50), 0], self.BALL_RADIUS, self.WHITE, self.BALL_SPEED)
             self.score += 1
 
+    def is_out_of_bounds(self):
+        if self.ball.position[1] > self.height:
+            self.lives -= 1
+            if self.lives == 0:
+                print("Game over!")
+                pygame.quit()
+                sys.exit()
+            return True
+        return False
+    
+    def is_collided(self, ball, basket):
+        if ball.position[0] + ball.radius < basket.position[0] or \
+           ball.position[0] - ball.radius > basket.position[0] + basket.size[0] or \
+           ball.position[1] + ball.radius < basket.position[1] or \
+           ball.position[1] - ball.radius > basket.position[1] + basket.size[1]:
+            return False
+        if self.score > 0 and self.score % 3 == 0:
+            self.BALL_SPEED += 0.2
+
+        
+        return True
     def run(self):
         while True:
             self.handle_events()

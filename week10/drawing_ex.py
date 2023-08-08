@@ -21,21 +21,3 @@
 # Outside of the Game class, create an instance of the class and call its run method to start the game.
 
 # Remember to handle the QUIT event in your game loop to allow the user to close the game window.
-import pygame
-import sys
-pygame.init()
-
-w = pygame.display.set_mode((800, 600))
-while True:
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            pygame.quit()
-            sys.exit()
-    w.fill((0, 0, 0))
-    pygame.draw.polygon(w, (255, 255, 0), 
-                           ((100, 100), 
-                           (200, 100), 
-                           (150, 200),
-                           (50, 200)))
-    pygame.draw.ellipse(w, (255, 0, 255), (300, 300, 200, 100))
-    pygame.display.flip()

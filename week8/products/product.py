@@ -51,6 +51,9 @@ class Store:
             raise IndexError('Index out of range.')
         self.__products.pop(index)
     
+    def clone_products(self):
+        return self.__products[:]
+    
     # operator [], give access to product at index
     def __getitem__(self, index):
         n = len(self.__products)
